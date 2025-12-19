@@ -1,11 +1,19 @@
 cmake_minimum_required(VERSION 3.10)
-project(ProyectoFinal)
+project(SistemaGestionAcademica)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# Incluir la carpeta de headers
 include_directories(include)
 
-file(GLOB SOURCES "src/*.cpp")
+# Definir los archivos fuente
+set(SOURCES
+    src/main.cpp
+    src/Persona.cpp
+    src/Estudiante.cpp
+    src/Curso.cpp
+    src/Sistema.cpp
+)
 
-add_executable(app ${SOURCES})
-
+# Crear el ejecutable
+add_executable(GestionAcademica ${SOURCES})
