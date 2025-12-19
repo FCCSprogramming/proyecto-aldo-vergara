@@ -5,23 +5,23 @@
 #include <iostream>
 
 class Persona {
-protected: 
-    // Protected permite que 'Estudiante' acceda a estas variables
+protected:
     int id;
     std::string nombre;
     std::string apellido;
 
 public:
     Persona(int id, std::string nombre, std::string apellido);
-    virtual ~Persona() = default; // Destructor virtual es OBLIGATORIO en herencia
+    virtual ~Persona() = default; // Destructor virtual importante
 
-    // Método virtual puro: obliga a las clases hijas a implementarlo
-    virtual void mostrarInfo() const = 0;
+    // Métodos virtuales puros (3.3)
+    virtual void mostrarInfo() const = 0; 
+    
+    // Método virtual normal
+    virtual float calcularDesempeno() const { return 0.0f; }
 
-    // Getters
     int getId() const { return id; }
     std::string getNombre() const { return nombre; }
-    std::string getApellido() const { return apellido; }
 };
 
 #endif
