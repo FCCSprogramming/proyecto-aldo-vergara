@@ -1,0 +1,8 @@
+# .gitignore
+build/
+bin/
+*.o
+*.exe
+.vscode/
+.DS_Store
+data/*.bin
