@@ -2,31 +2,28 @@
 #define SISTEMA_H
 
 #include <vector>
-#include <memory> // Para shared_ptr
+#include <memory> // Para smart pointers
 #include "Estudiante.h"
-
-// Estructura auxiliar SOLO para guardar en archivo
-struct EstudianteRecord {
-    int id;
-    char nombre[50];   // Tamaño fijo
-    char apellido[50]; // Tamaño fijo
-    float promedio;
-};
+#include "Curso.h"
 
 class Sistema {
 private:
-    // Punteros Inteligentes (Requisito 3.4)
-    std::vector<std::shared_ptr<Estudiante>> listaEstudiantes;
+    // Requerimiento 3.4: Uso de unique_ptr o shared_ptr
+    std::vector<std::shared_ptr<Estudiante>> estudiantes;
+    std::vector<std::shared_ptr<Curso>> cursos;
 
 public:
-    void agregarEstudiante(int id, std::string nombre, std::string apellido);
-    void listarTodos();
-    void agregarNotaAEstudiante(int id, float nota);
-
-    // Archivos (Requisito 3.5)
-    void guardarBinario();
-    void cargarBinario();
-    void exportarReporteTexto(); // .txt
+    Sistema();
+    void registrarEstudiante();
+    void registrarCurso();
+    void inscribirEstudiante();
+    void listarEstudiantes();
+    
+    // Requerimiento 3.5: Archivos
+    void guardarBD(); // Binario
+    void cargarBD();  // Binario
+    void exportarReporte(); // Texto .txt
+    void buscarEstudiantePorID(); // Acceso aleatorio (simulado o directo)
 };
 
 #endif
