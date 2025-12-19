@@ -3,29 +3,31 @@
 
 #include "Persona.h"
 
-// 1. Definimos la estructura que vivirá en memoria dinámica
+// Requerimiento 3.1: Estructura para gestión manual de memoria
 struct RegistroNotas {
-    float* notas;      // Array dinámico de floats
-    int cantidad;      // Cuántas notas tiene actualmente
-    int capacidad;     // Cuántas notas caben antes de redimensionar
+    float* notas; // Array dinámico
+    int cantidad;
+    int capacidad;
 };
 
 class Estudiante : public Persona {
 private:
-    RegistroNotas* historial; // Puntero "crudo" (Raw pointer)
+    RegistroNotas* historial; // Puntero crudo (Raw pointer)
 
 public:
     Estudiante(int id, std::string nombre, std::string apellido);
     
-    // REGLA DE LOS TRES (Necesaria cuando usas new/delete manual)
-    ~Estudiante() override;                  // 1. Destructor
-    Estudiante(const Estudiante& other);     // 2. Constructor Copia
+    // Constructor Copia (Regla de los 3/5 por usar memoria dinámica)
+    Estudiante(const Estudiante& other);
     
-    void agregarNota(float nota);
-    float calcularPromedio() const;
+    // Destructor (Para el delete del struct)
+    ~Estudiante() override;
 
-    // Sobrescribimos el método del padre
+    void agregarNota(float nota);
+    
+    // Sobrescitura de virtuales (3.3)
     void mostrarInfo() const override;
+    float calcularDesempeño() const override; // Promedio
 };
 
 #endif
